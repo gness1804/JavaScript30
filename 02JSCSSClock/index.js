@@ -1,6 +1,7 @@
 const stopButton = document.querySelector('.stop-button');
 const secondHand = document.querySelector('.second-hand');
 const minuteHand = document.querySelector('.min-hand');
+const hourHand = document.querySelector('.hour-hand');
 
 const tickUpOneSecond = () => {
   const second = new Date().getSeconds();
@@ -14,9 +15,19 @@ const tickUpOneMinute = () => {
   minuteHand.style.transform = `rotate(${degrees}deg)`;
 };
 
+const tickUpOneHour = () => {
+  let hour = new Date().getHours();
+  if (hour >= 13) {
+    hour -= 12;
+  }
+  const degrees = (hour * 30) + 90;
+  hourHand.style.transform = `rotate(${degrees}deg)`;
+};
+
 const goUpOneTick = () => {
   tickUpOneSecond();
   tickUpOneMinute();
+  tickUpOneHour();
 };
 
 const intervalId = window.setInterval(goUpOneTick, 1000);
