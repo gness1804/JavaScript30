@@ -4,7 +4,6 @@ const { exec } = require('child_process');
 
 const promisifiedExec = util.promisify(exec);
 const promisifiedReadFile = util.promisify(readFile);
-const forbiddenBranches = ['master', 'develop'];
 
 /**
  *
