@@ -17,7 +17,10 @@ document.addEventListener('keydown', (e) => {
   playSound(audioElem);
   const keyElem = document.querySelector(`.key[data-key="${keyPressed}"]`);
   keyElem.classList.add('playing');
-  setTimeout(() => {
-    keyElem.classList.remove('playing');
-  }, 3000);
+
+  document.querySelectorAll('.key').forEach(item => {
+    item.addEventListener('transitionend', () => {
+      item.classList.remove('playing');
+    });
+  });
 });
