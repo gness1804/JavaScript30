@@ -1,7 +1,9 @@
-const stopButton = document.querySelector('.stop-button');
+const startStopButton = document.querySelector('.start-stop-button');
 const secondHand = document.querySelector('.second-hand');
 const minuteHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
+
+let intervalId = null;
 
 const tickUpOneSecond = () => {
   const second = new Date().getSeconds();
@@ -30,8 +32,21 @@ const goUpOneTick = () => {
   tickUpOneHour();
 };
 
-const intervalId = window.setInterval(goUpOneTick, 1000);
+const startProcess = () => {
+  intervalId = window.setInterval(goUpOneTick, 1000);
+};
 
-stopButton.addEventListener('click', () => {
+const stopProcess = () => {
   window.clearInterval(intervalId);
+  intervalId = null;
+};
+
+startStopButton.addEventListener('click', () => {
+  if (intervalId) {
+    stopProcess();
+  } else {
+    startProcess();
+  }
 });
+
+startProcess();
