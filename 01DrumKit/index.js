@@ -7,7 +7,7 @@ const playSound = async (item) => {
   }
 };
 
-document.addEventListener('keydown', (e) => {
+const handleKeydown = (e) => {
   const keyPressed = e.which;
 
   const audioElem = document.querySelector(`audio[data-key="${keyPressed}"]`);
@@ -25,4 +25,6 @@ document.addEventListener('keydown', (e) => {
       }
     });
   });
-});
+};
+
+document.addEventListener('keydown', handleKeydown);
