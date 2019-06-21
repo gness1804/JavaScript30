@@ -1,3 +1,4 @@
+/* eslint-disable */ /* remove when I start the lesson */
 /* Get Our Elements */
 const player = document.querySelector('.player');
 const video = player.querySelector('.viewer');
