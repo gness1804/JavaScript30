@@ -1,5 +1,6 @@
 const stopButton = document.querySelector('.stop-button');
 const secondHand = document.querySelector('.second-hand');
+const minuteHand = document.querySelector('.min-hand');
 
 const tickUpOneSecond = () => {
   const second = new Date().getSeconds();
@@ -7,8 +8,19 @@ const tickUpOneSecond = () => {
   secondHand.style.transform = `rotate(${degrees}deg)`;
 };
 
-const secIntervalId = window.setInterval(tickUpOneSecond, 1000);
+const tickUpOneMinute = () => {
+  const minute = new Date().getMinutes();
+  const degrees = ((minute / 60) * 360) + 90;
+  minuteHand.style.transform = `rotate(${degrees}deg)`;
+};
+
+const goUpOneTick = () => {
+  tickUpOneSecond();
+  tickUpOneMinute();
+};
+
+const intervalId = window.setInterval(goUpOneTick, 1000);
 
 stopButton.addEventListener('click', () => {
-  window.clearInterval(secIntervalId);
+  window.clearInterval(intervalId);
 });
