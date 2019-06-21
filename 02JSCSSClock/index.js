@@ -34,11 +34,13 @@ const goUpOneTick = () => {
 
 const startProcess = () => {
   intervalId = window.setInterval(goUpOneTick, 1000);
+  startStopButton.innerHTML = 'Stop';
 };
 
 const stopProcess = () => {
   window.clearInterval(intervalId);
   intervalId = null;
+  startStopButton.innerHTML = 'Start';
 };
 
 startStopButton.addEventListener('click', () => {
