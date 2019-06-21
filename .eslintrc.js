@@ -12,15 +12,6 @@ module.exports = {
     browser: true,
   },
   extends: ['airbnb-base'],
-  // check if imports actually resolve
-  // 'settings': {
-  //   'import/resolver': {
-  //     'webpack': {
-  //       'config': 'build/webpack.base.conf.js'
-  //     }
-  //   }
-  // },
-  // add your custom rules here
   'rules': {
     'no-console': 'error',
     'func-names': 'off',
@@ -36,14 +27,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'arrow-parens': 'off',
     'operator-linebreak': 'off',
-    // React-specific rules: delete if not using React
-    'react/prefer-stateless-function': 'off',
-    'react/jsx-filename-extension': 'off',
-    'react/prop-types': 'off',
-    'react/jsx-equals-spacing': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'react/jsx-no-bind': 'off',
-    'class-methods-use-this': 'off',
+    'no-param-reassign': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

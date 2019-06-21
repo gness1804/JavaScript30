@@ -1,5 +1,6 @@
 const playSound = async (item) => {
   try {
+    item.currentTime = 0;
     await item.play();
   } catch (error) {
     throw new Error(`Problem playing sound: ${error}`);
