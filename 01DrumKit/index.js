@@ -6,21 +6,17 @@ const playSound = async (item) => {
   }
 };
 
-document.addEventListener('keyup', (e) => {
+document.addEventListener('keydown', (e) => {
   const keyPressed = e.which;
 
-  document.querySelectorAll('audio').forEach(item => {
-    if (parseInt(item.dataset.key, 10) === keyPressed) {
-      playSound(item);
-    }
-  });
-
-  document.querySelectorAll('.key').forEach(item => {
-    if (parseInt(item.dataset.key, 10) === keyPressed) {
-      item.classList.add('playing');
-      setTimeout(() => {
-        item.classList.remove('playing');
-      }, 3000);
-    }
-  });
+  const audioElem = document.querySelector(`audio[data-key="${keyPressed}"]`);
+  if (!audioElem) {
+    return;
+  }
+  playSound(audioElem);
+  const keyElem = document.querySelector(`.key[data-key="${keyPressed}"]`);
+  keyElem.classList.add('playing');
+  setTimeout(() => {
+    keyElem.classList.remove('playing');
+  }, 3000);
 });
