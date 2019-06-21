@@ -19,8 +19,10 @@ document.addEventListener('keydown', (e) => {
   keyElem.classList.add('playing');
 
   document.querySelectorAll('.key').forEach(item => {
-    item.addEventListener('transitionend', () => {
-      item.classList.remove('playing');
+    item.addEventListener('transitionend', (_e) => {
+      if (_e.propertyName === 'transform') {
+        item.classList.remove('playing');
+      }
     });
   });
 });
