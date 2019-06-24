@@ -4,12 +4,8 @@ const root = document.documentElement;
 const handleUpdate = (e, input) => {
   const { value } = e.target;
   const { id } = input;
-  const { sizing } = input.dataset;
-  if (sizing) {
-    root.style.setProperty(`--${id}`, `${value}${sizing}`);
-  } else {
-    root.style.setProperty(`--${id}`, `${value}`);
-  }
+  const suffix = input.dataset.sizing || '';
+  root.style.setProperty(`--${id}`, `${value}${suffix}`);
 };
 
 inputs.forEach(input => {
