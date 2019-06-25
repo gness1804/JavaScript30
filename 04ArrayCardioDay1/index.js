@@ -70,6 +70,13 @@ console.table(sortInventors());
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live?
+const getInventorLifespans = inventors.reduce((acc, curr) => {
+  curr.lifespan = curr.passed - curr.year;
+  acc.push(curr);
+  return acc;
+}, []);
+console.info('The inventors\' lifespans:');
+console.table(getInventorLifespans);
 
 // 5. Sort the inventors by years lived
 
