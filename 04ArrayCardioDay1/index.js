@@ -143,4 +143,15 @@ console.table(sortPeopleByLastName());
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
-// const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+const sumUpData = () => data.reduce((acc, curr) => {
+  if (!Object.hasOwnProperty.call(acc, curr)) {
+    acc[curr] = 1;
+  } else {
+    acc[curr] += 1;
+  }
+  return acc;
+}, {});
+
+console.info('The object with sum of each item:');
+console.table(sumUpData());
