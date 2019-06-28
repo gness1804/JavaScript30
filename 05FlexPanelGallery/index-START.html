@@ -67,7 +67,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid red;
     }
 
     .panel > *:first-child {
@@ -78,7 +77,10 @@
       transform: translateY(100%);
     }
 
-    .panel.open-active > *:first-child,
+    .panel.open-active > *:first-child {
+      transform: translateY(0);
+    }
+
     .panel.open-active > *:last-child {
       transform: translateY(0);
     }
@@ -104,29 +106,29 @@
 
   <div class="panels">
     <div class="panel panel1">
-      <p>Hey</p>
-      <p>Let's</p>
-      <p>Dance</p>
+      <p class="shout-out">Hey</p>
+      <p class="shout-out">Let's</p>
+      <p class="shout-out">Dance</p>
     </div>
     <div class="panel panel2">
-      <p>Give</p>
-      <p>Take</p>
-      <p>Receive</p>
+      <p class="shout-out">Give</p>
+      <p class="shout-out">Take</p>
+      <p class="shout-out">Receive</p>
     </div>
     <div class="panel panel3">
-      <p>Experience</p>
-      <p>It</p>
-      <p>Today</p>
+      <p class="shout-out">Experience</p>
+      <p class="shout-out">It</p>
+      <p class="shout-out">Today</p>
     </div>
     <div class="panel panel4">
-      <p>Give</p>
-      <p>All</p>
-      <p>You can</p>
+      <p class="shout-out">Give</p>
+      <p class="shout-out">All</p>
+      <p class="shout-out">You can</p>
     </div>
     <div class="panel panel5">
-      <p>Life</p>
-      <p>In</p>
-      <p>Motion</p>
+      <p class="shout-out">Life</p>
+      <p class="shout-out">In</p>
+      <p class="shout-out">Motion</p>
     </div>
   </div>
 
