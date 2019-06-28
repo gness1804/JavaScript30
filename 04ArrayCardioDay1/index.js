@@ -115,7 +115,7 @@ const sumUpData = () => data.reduce((acc, curr) => {
   if (!Object.hasOwnProperty.call(acc, curr)) {
     acc[curr] = 1;
   } else {
-    acc[curr] += 1;
+    acc[curr]++;
   }
   return acc;
 }, {});
