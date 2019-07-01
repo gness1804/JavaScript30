@@ -1,10 +1,15 @@
 const searchBox = document.querySelector('.search');
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const cities = [];
 
-searchBox.addEventListener('keyup', async () => {
-  const searchBoxVal = searchBox.value;
-  const results = await fetch(endpoint);
-  const resultsJSON = await results.json();
-  const filteredResults = resultsJSON.filter(res => res.city.includes(searchBoxVal));
-  console.log('filteredResults:', filteredResults);
-});
+fetch(endpoint)
+  .then(res => res.json())
+  .then(res => cities.push(...res));
+
+const findMatches = () => {
+  const searchBoxVal = searchBox.value.toLowerCase();
+  const filteredResults = cities.filter(res => res.city.toLowerCase().includes(searchBoxVal) || res.state.toLowerCase().includes(searchBoxVal));
+
+};
+
+searchBox.addEventListener('keyup', findMatches);
