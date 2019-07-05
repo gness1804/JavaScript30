@@ -9,7 +9,7 @@ const promisifiedReadFile = util.promisify(readFile);
  *
  * @param {string} message - the error message to display
  */
-const resetAndExit = message => {
+const resetAndExit = (message) => {
   promisifiedExec('git reset HEAD .')
     .then(() => {
       process.stderr.write(message);
@@ -53,7 +53,7 @@ const checkFile = data => new Promise((resolve, reject) => {
  *
  * @param {string[]} files - array of strings corresponding to file names
  */
-const loopThroughFiles = files => {
+const loopThroughFiles = (files) => {
   for (const file of files) {
     if (file) {
       promisifiedReadFile(file, 'utf-8').then(fileData => checkFile(fileData));
@@ -76,7 +76,7 @@ getCurrentBranch()
     process.stdout.write('Sucessfully passed pre-commit checks. \n');
     process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     const errorMessage = `Error: ${err.message || JSON.stringify(err)}`;
     resetAndExit(errorMessage);
   });
