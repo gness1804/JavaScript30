@@ -21,19 +21,19 @@ const comments = [
 const thisYear = new Date().getFullYear();
 /**
  *
- * @param {{ name: string, year: number}[]} arr - a list of people
+ * @param {{ name: string, year: number}[]} _people - a list of people
  * @returns {boolean} - whether or not one or more of the people is of age
  */
-const isSomeoneOfAge = arr => arr.some(person => thisYear - person.year >= 19);
+const isSomeoneOfAge = _people => _people.some(person => thisYear - person.year >= 19);
 console.info(`Are one or more of the people 19 or older? ${isSomeoneOfAge(people) ? 'Yes' : 'No'}`);
 
 // Array.prototype.every() // is everyone 19 or older?
 /**
  *
- * @param {{ name: string, year: number}[]} arr - a list of people
+ * @param {{ name: string, year: number}[]} _people - a list of people
  * @returns {boolean} - whether or not all of the people are of age
  */
-const isEveryoneOfAge = arr => arr.every(person => thisYear - person.year >= 19);
+const isEveryoneOfAge = _people => _people.every(person => thisYear - person.year >= 19);
 console.info(`Are all of the people 19 or older? ${isEveryoneOfAge(people) ? 'Yes' : 'No'}`);
 
 // Array.prototype.find()
@@ -41,13 +41,25 @@ console.info(`Are all of the people 19 or older? ${isEveryoneOfAge(people) ? 'Ye
 // find the comment with the ID of 823423
 /**
  *
- * @param {{ text: string, id: number}[]} arr - the comments
+ * @param {{ text: string, id: number}[]} _comments - the comments
  * @returns {{text: string, id: number}} - the comment object that matches the criterion
  */
-const findTheId = arr => arr.find(comment => comment.id === 823423);
+const findTheId = _comments => _comments.find(comment => comment.id === 823423);
 console.info('The comment with the id of 823423:');
 console.table(findTheId(comments));
 
 // Array.prototype.findIndex()
 // Find the comment with this ID
 // delete the comment with the ID of 823423
+
+/**
+ *
+ * @param {{ text: string, id: number}[]} _comments - the comments
+ * @returns {{ text: string, id: number}[]} - modified array of comments without the target one
+ */
+const deleteTheComment = _comments => _comments
+  .filter(comment => _comments.indexOf(comment) !== _comments
+    .findIndex(_comment => _comment.id === 823423));
+
+console.info('The new array with the target comment deleted:');
+console.table(deleteTheComment(comments));
