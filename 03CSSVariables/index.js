@@ -8,6 +8,6 @@ const handleUpdate = (e, input) => {
   root.style.setProperty(`--${id}`, `${value}${suffix}`);
 };
 
-inputs.forEach(input => {
-  input.addEventListener('change', (e) => handleUpdate(e, input));
+inputs.forEach((input) => {
+  input.addEventListener('change', e => handleUpdate(e, input));
 });

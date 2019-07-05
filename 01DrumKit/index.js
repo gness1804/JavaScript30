@@ -18,7 +18,7 @@ const handleKeydown = (e) => {
   const keyElem = document.querySelector(`.key[data-key="${keyPressed}"]`);
   keyElem.classList.add('playing');
 
-  document.querySelectorAll('.key').forEach(item => {
+  document.querySelectorAll('.key').forEach((item) => {
     item.addEventListener('transitionend', (_e) => {
       if (_e.propertyName === 'transform') {
         item.classList.remove('playing');

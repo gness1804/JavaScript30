@@ -20,7 +20,7 @@ const highlightResult = (fullNameStr, searchBoxVal) => fullNameStr.replace(new R
  * @param {string} pop - the population, which comes in as a string. Example: '235980'
  * @returns {string} - the same population number, but with commas added for readability. Example: '235,980'
  */
-const addCommasToPopulation = (pop) => pop.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+const addCommasToPopulation = pop => pop.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
 const findMatches = () => {
   const searchBoxVal = searchBox.value;
