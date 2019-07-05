@@ -17,7 +17,7 @@ module.exports = {
     'func-names': 'off',
     'object-shorthand': 'off',
     'no-alert': 'off',
-    'arrow-body-style': 'off',
+    'arrow-body-style': 'error',
     'global-require': 'off',
     'flowtype-errors/show-errors': 'off',
     'no-plusplus': 'off',
@@ -25,7 +25,7 @@ module.exports = {
     'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
     'no-unused-vars': 'error',
-    'arrow-parens': 'off',
+    'arrow-parens': 'error',
     'operator-linebreak': 'off',
     'no-param-reassign': 'off',
     // allow debugger during development
