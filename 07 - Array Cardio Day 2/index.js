@@ -8,13 +8,13 @@ const people = [
   { name: 'Lux', year: 2015 },
 ];
 
-// const comments = [
-//   { text: 'Love this!', id: 523423 },
-//   { text: 'Super good', id: 823423 },
-//   { text: 'You are the best', id: 2039842 },
-//   { text: 'Ramen is my fav food ever', id: 123523 },
-//   { text: 'Nice Nice Nice!', id: 542328 },
-// ];
+const comments = [
+  { text: 'Love this!', id: 523423 },
+  { text: 'Super good', id: 823423 },
+  { text: 'You are the best', id: 2039842 },
+  { text: 'Ramen is my fav food ever', id: 123523 },
+  { text: 'Nice Nice Nice!', id: 542328 },
+];
 
 // Some and Every Checks
 // Array.prototype.some() // is at least one person 19 or older?
@@ -39,6 +39,14 @@ console.info(`Are all of the people 19 or older? ${isEveryoneOfAge(people) ? 'Ye
 // Array.prototype.find()
 // Find is like filter, but instead returns just the one you are looking for
 // find the comment with the ID of 823423
+/**
+ *
+ * @param {{ text: string, id: number}[]} arr - the comments
+ * @returns {{text: string, id: number}} - the comment object that matches the criterion
+ */
+const findTheId = arr => arr.find(comment => comment.id === 823423);
+console.info('The comment with the id of 823423:');
+console.table(findTheId(comments));
 
 // Array.prototype.findIndex()
 // Find the comment with this ID
