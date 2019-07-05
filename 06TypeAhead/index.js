@@ -7,12 +7,20 @@ fetch(endpoint)
   .then(res => res.json())
   .then(res => cities.push(...res));
 
+/**
+   *
+   * @param {string} fullNameStr - the full city or state name: Example: "Chicago"
+   * @param {string} searchBoxVal - the value entered into the search box, usually a substring of the city/state name. Example: "chi"
+   * @returns {string} - the formatted string to display
+   */
+const highlightResult = (fullNameStr, searchBoxVal) => fullNameStr.replace(new RegExp(`${searchBoxVal}`, 'gi'), `<span class="hl">${searchBoxVal}</span>`);
+
 const findMatches = () => {
-  const searchBoxVal = searchBox.value.toLowerCase();
-  const filteredResults = cities.filter(res => res.city.toLowerCase().includes(searchBoxVal) || res.state.toLowerCase().includes(searchBoxVal));
+  const searchBoxVal = searchBox.value;
+  const filteredResults = cities.filter(res => res.city.toLowerCase().includes(searchBoxVal.toLowerCase()) || res.state.toLowerCase().includes(searchBoxVal.toLowerCase()));
   const html = filteredResults.map(cityObj => `
     <li>
-      <span class="name">${cityObj.city}, ${cityObj.state}</span>
+      <span class="name">${highlightResult(cityObj.city, searchBoxVal)}, ${highlightResult(cityObj.state, searchBoxVal)}</span>
       <span class="population">${cityObj.population}</span>
     <li>
   `).join('');
