@@ -12,11 +12,22 @@ let lastY = 0;
 
 const draw = (e) => {
   if (isDrawing) {
-    console.log('is drawing');
+    const { offsetX, offsetY } = e;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(offsetX, offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [offsetX, offsetY];
   }
 };
 
+const handleMouseDown = (e) => {
+  const { offsetX, offsetY } = e;
+  isDrawing = true;
+  [lastX, lastY] = [offsetX, offsetY];
+};
+
 canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', () => { isDrawing = true; });
+canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mouseup', () => { isDrawing = false; });
 canvas.addEventListener('mouseout', () => { isDrawing = false; });
