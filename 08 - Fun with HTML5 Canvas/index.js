@@ -11,6 +11,7 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 let hue = 0;
+let direction = true;
 
 const draw = (e) => {
   if (isDrawing) {
@@ -22,6 +23,14 @@ const draw = (e) => {
     ctx.stroke();
     [lastX, lastY] = [offsetX, offsetY];
     hue++;
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+      direction = !direction;
+    }
+    if (direction) {
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
   }
 };
 
