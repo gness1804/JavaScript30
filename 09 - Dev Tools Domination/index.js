@@ -44,5 +44,18 @@ dogs.forEach((dog) => {
 });
 
 // counting
+let counter = 0;
+
+while (counter < 10) {
+  console.count('One tick!');
+  counter++;
+}
 
 // timing
+console.time('fetching data...');
+fetch('https://api.github.com/users/gness1804')
+  .then(data => data.json())
+  .then((data) => {
+    console.timeEnd('fetching data...');
+    console.log('data:', data);
+  });
