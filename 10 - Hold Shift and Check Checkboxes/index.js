@@ -9,11 +9,10 @@ function handleCheck(e) {
     if (lastChecked !== null && e.shiftKey) {
       const thisIndex = checkboxes.indexOf(thisBox);
       const lastCheckedIndex = checkboxes.indexOf(lastChecked);
-      checkboxes.forEach((_box) => {
-        if (checkboxes.indexOf(_box) > lastCheckedIndex && checkboxes.indexOf(_box) < thisIndex) {
-          _box.checked = true;
-        } else if (checkboxes.indexOf(_box) < lastCheckedIndex && checkboxes.indexOf(_box) > thisIndex) {
-          _box.checked = true;
+      checkboxes.forEach((box) => {
+        const inBetween = (checkboxes.indexOf(box) > lastCheckedIndex && checkboxes.indexOf(box) < thisIndex) || (checkboxes.indexOf(box) < lastCheckedIndex && checkboxes.indexOf(box) > thisIndex);
+        if (inBetween) {
+          box.checked = true;
         }
       });
     }
