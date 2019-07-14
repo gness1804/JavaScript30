@@ -1,8 +1,7 @@
 const player = document.querySelector('.player');
 // const progressBar = player.querySelector('.progress');
 const playOrPauseButton = player.querySelector('.player__button.toggle');
-const volumeSlider = player.querySelector('.player__slider.volume');
-const playbackRateSlider = player.querySelector('.player__slider.playback-rate');
+const sliders = document.querySelectorAll('.player__slider');
 const skipButtons = document.querySelectorAll('[data-skip]');
 const video = player.querySelector('.player__video.viewer');
 
@@ -17,14 +16,10 @@ function updateButtonDisplay() {
   playOrPauseButton.innerText = this.paused ? playIcon : pauseIcon;
 }
 
-function handleVolumeChange() {
-  const newVol = this.value;
-  video.volume = newVol;
-}
-
-function handlePlaybackRateChange() {
-  const newRate = this.value;
-  video.playbackRate = newRate;
+function handleSliderChange() {
+  const newVal = parseFloat(this.value);
+  const type = this.name;
+  video[type] = newVal;
 }
 
 function handleSkip() {
@@ -35,10 +30,9 @@ function handleSkip() {
 const resetVideo = () => { video.currentTime = 0; };
 
 playOrPauseButton.addEventListener('click', handlePlayPause);
-volumeSlider.addEventListener('change', handleVolumeChange);
-playbackRateSlider.addEventListener('change', handlePlaybackRateChange);
 
 skipButtons.forEach(button => button.addEventListener('click', handleSkip));
+sliders.forEach(slider => slider.addEventListener('change', handleSliderChange));
 
 video.addEventListener('click', handlePlayPause);
 video.addEventListener('dblclick', resetVideo);
