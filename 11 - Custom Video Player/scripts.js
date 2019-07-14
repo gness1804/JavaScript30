@@ -8,13 +8,8 @@ const fastForwardButton = player.querySelector('.player__button.fast-forward');
 const video = player.querySelector('.player__video.viewer');
 
 const handlePlayPause = () => {
-  if (video.paused) {
-    video.play();
-    playOrPauseButton.innerText = 'Pause';
-  } else {
-    video.pause();
-    playOrPauseButton.innerText = 'Play';
-  }
+  const method = video.paused ? 'play' : 'pause';
+  video[method]();
 };
 
 function handleVolumeChange() {
