@@ -3,8 +3,7 @@ const player = document.querySelector('.player');
 const playOrPauseButton = player.querySelector('.player__button.toggle');
 const volumeSlider = player.querySelector('.player__slider.volume');
 const playbackRateSlider = player.querySelector('.player__slider.playback-rate');
-const rewindButton = player.querySelector('.player__button.rewind');
-const fastForwardButton = player.querySelector('.player__button.fast-forward');
+const skipButtons = document.querySelectorAll('[data-skip]');
 const video = player.querySelector('.player__video.viewer');
 
 /** toggles between play and pause
@@ -28,12 +27,7 @@ function handlePlaybackRateChange() {
   video.playbackRate = newRate;
 }
 
-function handleFastForward() {
-  const skipVal = parseFloat(this.dataset.skip);
-  video.currentTime += skipVal;
-}
-
-function handleRewind() {
+function handleSkip() {
   const skipVal = parseFloat(this.dataset.skip);
   video.currentTime += skipVal;
 }
@@ -43,8 +37,9 @@ const resetVideo = () => { video.currentTime = 0; };
 playOrPauseButton.addEventListener('click', handlePlayPause);
 volumeSlider.addEventListener('change', handleVolumeChange);
 playbackRateSlider.addEventListener('change', handlePlaybackRateChange);
-fastForwardButton.addEventListener('click', handleFastForward);
-rewindButton.addEventListener('click', handleRewind);
+
+skipButtons.forEach(button => button.addEventListener('click', handleSkip));
+
 video.addEventListener('click', handlePlayPause);
 video.addEventListener('dblclick', resetVideo);
 video.addEventListener('play', updateButtonDisplay);
