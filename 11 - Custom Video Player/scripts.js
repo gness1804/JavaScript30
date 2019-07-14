@@ -1,10 +1,11 @@
-// const progressBar = document.querySelector('.progress');
-const playOrPauseButton = document.querySelector('.player__button.toggle');
-const volumeSlider = document.querySelector('.player__slider.volume');
-const playbackRateSlider = document.querySelector('.player__slider.playback-rate');
-const rewindButton = document.querySelector('.player__button.rewind');
-const fastForwardButton = document.querySelector('.player__button.fast-forward');
-const video = document.querySelector('.player__video.viewer');
+const player = document.querySelector('.player');
+// const progressBar = player.querySelector('.progress');
+const playOrPauseButton = player.querySelector('.player__button.toggle');
+const volumeSlider = player.querySelector('.player__slider.volume');
+const playbackRateSlider = player.querySelector('.player__slider.playback-rate');
+const rewindButton = player.querySelector('.player__button.rewind');
+const fastForwardButton = player.querySelector('.player__button.fast-forward');
+const video = player.querySelector('.player__video.viewer');
 
 const handlePlayPause = () => {
   if (video.paused) {
