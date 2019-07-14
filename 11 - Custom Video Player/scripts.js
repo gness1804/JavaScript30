@@ -32,9 +32,12 @@ function handleRewind() {
   video.currentTime += skipVal;
 }
 
+const resetVideo = () => { video.currentTime = 0; };
+
 playOrPauseButton.addEventListener('click', handlePlayPause);
 volumeSlider.addEventListener('change', handleVolumeChange);
 playbackRateSlider.addEventListener('change', handlePlaybackRateChange);
 fastForwardButton.addEventListener('click', handleFastForward);
 rewindButton.addEventListener('click', handleRewind);
 video.addEventListener('click', handlePlayPause);
+video.addEventListener('dblclick', resetVideo);
