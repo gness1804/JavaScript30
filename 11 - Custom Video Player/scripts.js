@@ -7,10 +7,10 @@ const rewindButton = player.querySelector('.player__button.rewind');
 const fastForwardButton = player.querySelector('.player__button.fast-forward');
 const video = player.querySelector('.player__video.viewer');
 
-const handlePlayPause = () => {
-  const method = video.paused ? 'play' : 'pause';
-  video[method]();
-};
+/**
+ * @returns {Function} - video.play() or video.pause() depending on video's current state
+ */
+const handlePlayPause = () => video[video.paused ? 'play' : 'pause']();
 
 function handleVolumeChange() {
   const newVol = this.value;
