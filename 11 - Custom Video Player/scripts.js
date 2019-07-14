@@ -41,3 +41,4 @@ volumeSlider.addEventListener('change', handleVolumeChange);
 playbackRateSlider.addEventListener('change', handlePlaybackRateChange);
 fastForwardButton.addEventListener('click', handleFastForward);
 rewindButton.addEventListener('click', handleRewind);
+video.addEventListener('click', handlePlayPause);
