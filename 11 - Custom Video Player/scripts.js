@@ -43,7 +43,6 @@ function handleTimeVideoUpdate() {
 }
 
 function handleClickVideoUpdate(e) {
-  if (e.type === 'mousemove' && !mousedown) return;
   const placeClicked = e.offsetX;
   const progressBarWidth = progressBar.offsetWidth;
   const timeToJumpTo = (placeClicked / progressBarWidth) * video.duration;
@@ -55,7 +54,7 @@ const handleMouseup = () => { mousedown = false; };
 
 playOrPauseButton.addEventListener('click', handlePlayPause);
 progressBar.addEventListener('click', handleClickVideoUpdate);
-progressBar.addEventListener('mousemove', handleClickVideoUpdate);
+progressBar.addEventListener('mousemove', e => mousedown && handleClickVideoUpdate(e));
 progressBar.addEventListener('mousedown', handleMousedown);
 progressBar.addEventListener('mouseup', handleMouseup);
 
