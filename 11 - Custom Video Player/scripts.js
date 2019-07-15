@@ -6,6 +6,8 @@ const sliders = document.querySelectorAll('.player__slider');
 const skipButtons = document.querySelectorAll('[data-skip]');
 const video = player.querySelector('.player__video.viewer');
 
+let mousedown = false;
+
 /** toggles between play and pause
  * @returns {Function} - video.play() or video.pause() depending on video's current state
  */
@@ -41,14 +43,21 @@ function handleTimeVideoUpdate() {
 }
 
 function handleClickVideoUpdate(e) {
+  if (e.type === 'mousemove' && !mousedown) return;
   const placeClicked = e.offsetX;
   const progressBarWidth = progressBar.offsetWidth;
   const timeToJumpTo = (placeClicked / progressBarWidth) * video.duration;
   video.currentTime = timeToJumpTo;
 }
 
+const handleMousedown = () => { mousedown = true; };
+const handleMouseup = () => { mousedown = false; };
+
 playOrPauseButton.addEventListener('click', handlePlayPause);
 progressBar.addEventListener('click', handleClickVideoUpdate);
+progressBar.addEventListener('mousemove', handleClickVideoUpdate);
+progressBar.addEventListener('mousedown', handleMousedown);
+progressBar.addEventListener('mouseup', handleMouseup);
 
 skipButtons.forEach(button => button.addEventListener('click', handleSkip));
 sliders.forEach(slider => slider.addEventListener('change', handleSliderChange));
