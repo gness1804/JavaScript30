@@ -1,4 +1,5 @@
 const player = document.querySelector('.player');
+const progressBar = player.querySelector('.progress');
 const progressBarFilledPortion = player.querySelector('.progress__filled');
 const playOrPauseButton = player.querySelector('.player__button.toggle');
 const sliders = document.querySelectorAll('.player__slider');
@@ -32,14 +33,22 @@ const resetVideo = () => { video.currentTime = 0; };
 /**
  * updates the progress base based on how far the video has advanced
  */
-function handleVideoUpdate() {
+function handleTimeVideoUpdate() {
   const { currentTime, duration: totalTime } = this;
-  const progressElapsed = Math.round((currentTime / totalTime) * 100);
+  const progressElapsed = (currentTime / totalTime) * 100;
   progressBarFilledPortion.style.width = `${progressElapsed.toString()}%`;
   progressBarFilledPortion.style.flexBasis = `${progressElapsed.toString()}%`;
 }
 
+function handleClickVideoUpdate(e) {
+  const placeClicked = e.offsetX;
+  const progressBarWidth = progressBar.offsetWidth;
+  const timeToJumpTo = (placeClicked / progressBarWidth) * video.duration;
+  video.currentTime = timeToJumpTo;
+}
+
 playOrPauseButton.addEventListener('click', handlePlayPause);
+progressBar.addEventListener('click', handleClickVideoUpdate);
 
 skipButtons.forEach(button => button.addEventListener('click', handleSkip));
 sliders.forEach(slider => slider.addEventListener('change', handleSliderChange));
@@ -48,4 +57,4 @@ video.addEventListener('click', handlePlayPause);
 video.addEventListener('dblclick', resetVideo);
 video.addEventListener('play', updateButtonDisplay);
 video.addEventListener('pause', updateButtonDisplay);
-video.addEventListener('timeupdate', handleVideoUpdate);
+video.addEventListener('timeupdate', handleTimeVideoUpdate);
