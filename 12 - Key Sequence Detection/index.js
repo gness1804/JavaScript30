@@ -1,3 +1,4 @@
+/* global cornify_add */
 let lastKeyupTime;
 let targetStr = '';
 
@@ -13,7 +14,7 @@ const handleKeyup = (e) => {
   const checkIfStringMatches = () => {
     if (targetStr.includes(secretCode)) {
       targetStr = '';
-      alert('Congratulations! You win!');
+      cornify_add();
     }
   };
 
