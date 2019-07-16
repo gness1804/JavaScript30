@@ -1,6 +1,8 @@
 let lastKeyupTime;
 let targetStr = '';
 
+const secretCode = 'cats';
+
 const handleKeyup = (e) => {
   const startNewSequence = () => {
     const keyPressed = e.key;
@@ -8,17 +10,19 @@ const handleKeyup = (e) => {
     lastKeyupTime = Date.now();
   };
 
+  const checkIfStringMatches = () => {
+    if (targetStr.includes(secretCode)) {
+      targetStr = '';
+      alert('Congratulations! You win!');
+    }
+  };
+
   const addKeyToSequence = () => {
     const keyPressed = e.key;
     targetStr += keyPressed;
     lastKeyupTime = Date.now();
+    checkIfStringMatches();
   };
-
-  if (targetStr === 'cats') {
-    targetStr = '';
-    alert('Congratulations! You win!');
-    return;
-  }
 
   if (lastKeyupTime) {
     const timeElapsed = Date.now() - lastKeyupTime;
