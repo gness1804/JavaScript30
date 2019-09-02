@@ -6,8 +6,7 @@ const secretCode = 'cats';
 
 const handleKeyup = (e) => {
   const startNewSequence = () => {
-    const keyPressed = e.key;
-    targetStr = keyPressed;
+    targetStr = e.key;
     lastKeyupTime = Date.now();
   };
 
@@ -19,8 +18,7 @@ const handleKeyup = (e) => {
   };
 
   const addKeyToSequence = () => {
-    const keyPressed = e.key;
-    targetStr += keyPressed;
+    targetStr += e.key;
     lastKeyupTime = Date.now();
     checkIfStringMatches();
   };
