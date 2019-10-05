@@ -24,8 +24,13 @@ const thisYear = new Date().getFullYear();
  * @param {{ name: string, year: number}[]} _people - a list of people
  * @returns {boolean} - whether or not one or more of the people is of age
  */
-const isSomeoneOfAge = _people => _people.some(person => thisYear - person.year >= 19);
-console.info(`Are one or more of the people 19 or older? ${isSomeoneOfAge(people) ? 'Yes' : 'No'}`);
+const isSomeoneOfAge = _people =>
+  _people.some(person => thisYear - person.year >= 19);
+console.info(
+  `Are one or more of the people 19 or older? ${
+    isSomeoneOfAge(people) ? 'Yes' : 'No'
+  }`,
+);
 
 // Array.prototype.every() // is everyone 19 or older?
 /**
@@ -33,8 +38,13 @@ console.info(`Are one or more of the people 19 or older? ${isSomeoneOfAge(people
  * @param {{ name: string, year: number}[]} _people - a list of people
  * @returns {boolean} - whether or not all of the people are of age
  */
-const isEveryoneOfAge = _people => _people.every(person => thisYear - person.year >= 19);
-console.info(`Are all of the people 19 or older? ${isEveryoneOfAge(people) ? 'Yes' : 'No'}`);
+const isEveryoneOfAge = _people =>
+  _people.every(person => thisYear - person.year >= 19);
+console.info(
+  `Are all of the people 19 or older? ${
+    isEveryoneOfAge(people) ? 'Yes' : 'No'
+  }`,
+);
 
 // Array.prototype.find()
 // Find is like filter, but instead returns just the one you are looking for
@@ -57,9 +67,12 @@ console.table(findTheId(comments));
  * @param {{ text: string, id: number}[]} _comments - the comments
  * @returns {{ text: string, id: number}[]} - modified array of comments without the target one
  */
-const deleteTheComment = _comments => _comments
-  .filter(comment => _comments.indexOf(comment) !== _comments
-    .findIndex(_comment => _comment.id === 823423));
+const deleteTheComment = _comments =>
+  _comments.filter(
+    comment =>
+      _comments.indexOf(comment) !==
+      _comments.findIndex(_comment => _comment.id === 823423),
+  );
 
 console.info('The new array with the target comment deleted:');
 console.table(deleteTheComment(comments));

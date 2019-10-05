@@ -30,7 +30,9 @@ function handleSkip() {
   video.currentTime += skipVal;
 }
 
-const resetVideo = () => { video.currentTime = 0; };
+const resetVideo = () => {
+  video.currentTime = 0;
+};
 
 /**
  * updates the progress base based on how far the video has advanced
@@ -49,17 +51,26 @@ function handleClickVideoUpdate(e) {
   video.currentTime = timeToJumpTo;
 }
 
-const handleMousedown = () => { mousedown = true; };
-const handleMouseup = () => { mousedown = false; };
+const handleMousedown = () => {
+  mousedown = true;
+};
+const handleMouseup = () => {
+  mousedown = false;
+};
 
 playOrPauseButton.addEventListener('click', handlePlayPause);
 progressBar.addEventListener('click', handleClickVideoUpdate);
-progressBar.addEventListener('mousemove', e => mousedown && handleClickVideoUpdate(e));
+progressBar.addEventListener(
+  'mousemove',
+  e => mousedown && handleClickVideoUpdate(e),
+);
 progressBar.addEventListener('mousedown', handleMousedown);
 progressBar.addEventListener('mouseup', handleMouseup);
 
 skipButtons.forEach(button => button.addEventListener('click', handleSkip));
-sliders.forEach(slider => slider.addEventListener('change', handleSliderChange));
+sliders.forEach(slider =>
+  slider.addEventListener('change', handleSliderChange),
+);
 
 video.addEventListener('click', handlePlayPause);
 video.addEventListener('dblclick', resetVideo);

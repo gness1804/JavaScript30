@@ -14,7 +14,7 @@ let lastY = 0;
 let hue = 0;
 let direction = true;
 
-const draw = (e) => {
+const draw = e => {
   if (isDrawing) {
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     const { offsetX, offsetY } = e;
@@ -35,7 +35,7 @@ const draw = (e) => {
   }
 };
 
-const handleMouseDown = (e) => {
+const handleMouseDown = e => {
   const { offsetX, offsetY } = e;
   isDrawing = true;
   [lastX, lastY] = [offsetX, offsetY];
@@ -43,5 +43,9 @@ const handleMouseDown = (e) => {
 
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mousedown', handleMouseDown);
-canvas.addEventListener('mouseup', () => { isDrawing = false; });
-canvas.addEventListener('mouseout', () => { isDrawing = false; });
+canvas.addEventListener('mouseup', () => {
+  isDrawing = false;
+});
+canvas.addEventListener('mouseout', () => {
+  isDrawing = false;
+});

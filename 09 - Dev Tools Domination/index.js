@@ -37,7 +37,7 @@ const para = document.querySelector('p');
 console.dir(para);
 
 // Grouping together
-dogs.forEach((dog) => {
+dogs.forEach(dog => {
   console.group(`${dog.name}`);
   console.log(`This is ${dog.name} and he is ${dog.age} years old.`);
   console.groupEnd(`${dog.name}`);
@@ -55,7 +55,7 @@ while (counter < 10) {
 console.time('fetching data...');
 fetch('https://api.github.com/users/gness1804')
   .then(data => data.json())
-  .then((data) => {
+  .then(data => {
     console.timeEnd('fetching data...');
     console.log('data:', data);
   });

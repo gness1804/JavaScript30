@@ -3,7 +3,7 @@
 let targetStr = '';
 const secretCode = 'cats';
 
-const handleKeyup = (e) => {
+const handleKeyup = e => {
   targetStr += e.key;
   if (targetStr.length > 4) {
     targetStr = targetStr.slice(1);

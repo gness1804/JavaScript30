@@ -1,4 +1,4 @@
-const playSound = async (item) => {
+const playSound = async item => {
   try {
     item.currentTime = 0;
     await item.play();
@@ -7,7 +7,7 @@ const playSound = async (item) => {
   }
 };
 
-const handleKeydown = (e) => {
+const handleKeydown = e => {
   const keyPressed = e.which;
 
   const audioElem = document.querySelector(`audio[data-key="${keyPressed}"]`);
@@ -18,8 +18,8 @@ const handleKeydown = (e) => {
   const keyElem = document.querySelector(`.key[data-key="${keyPressed}"]`);
   keyElem.classList.add('playing');
 
-  document.querySelectorAll('.key').forEach((item) => {
-    item.addEventListener('transitionend', (_e) => {
+  document.querySelectorAll('.key').forEach(item => {
+    item.addEventListener('transitionend', _e => {
       if (_e.propertyName === 'transform') {
         item.classList.remove('playing');
       }
