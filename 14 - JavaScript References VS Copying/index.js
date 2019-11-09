@@ -18,16 +18,31 @@ team[3] = 'Ken';
 console.log('players after team insert:', players); // it replaced 'Poppy' with 'Ken'
 
 // oh no - we have edited the original array too!
-
 // Why? It's because that is an array reference, not an array copy. They both point to the same array!
-
 // So, how do we fix this? We take a copy instead!
 
-// one way
+// one way: destructure into new array
+const teamNew = [...players]; // this makes a copy of the original
+teamNew[0] = 'Susan';
+console.log('players -- should have Wes still in first position:', players);
+
+// or Wes's method of calling slice() with no args
+const teamNewSliced = players.slice();
+teamNewSliced[0] = 'Susan';
+console.log(
+  'players -- should once again have Wes still in first position:',
+  players,
+);
 
 // or create a new array and concat the old one in
+const teamNewConcat = [].concat(players);
+teamNewConcat[0] = 'Susan';
+console.log('players -- should still have Wes in first position:', players);
 
-// or use the new ES6 Spread
+// or use Array.from()
+const teamNewFrom = Array.from(players);
+teamNewFrom[0] = 'Susan';
+console.log('players -- no Susan here:', players);
 
 // now when we update it, the original one isn't changed
 
