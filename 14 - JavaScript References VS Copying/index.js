@@ -48,16 +48,37 @@ console.log('players -- no Susan here:', players);
 
 // The same thing goes for objects, let's say we have a person object
 
-// with Objects
-// const person = {
-//   name: 'Wes Bos',
-//   age: 80
-// };
+const person = {
+  name: 'Wes Bos',
+  age: 80,
+};
+console.log('person.nationality -- original:', person.nationality);
+console.log('person.age -- originals:', person.age);
 
 // and think we make a copy:
+const person2 = person;
+person2.nationality = 'Canadian';
+person2.age = '20';
+console.log(
+  "person.nationality -- it has been mutated to 'Canadian':",
+  person.nationality,
+);
+console.log("person.age -- it's also been mutated:", person.age);
 
 // how do we take a copy instead?
+const personNew = Object.assign({}, person);
+personNew.nationality = 'Australian';
+console.log(
+  "person.nationality -- should still be 'Canadian':",
+  person.nationality,
+);
 
 // We will hopefully soon see the object ...spread
+const personNewSpread = { ...person };
+personNewSpread.nationality = 'Australian';
+console.log(
+  "person.nationality -- should still be 'Canadian':",
+  person.nationality,
+);
 
 // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
