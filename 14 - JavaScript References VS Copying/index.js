@@ -82,3 +82,35 @@ console.log(
 );
 
 // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+const mvp = {
+  name: 'Lebron James',
+  teams: {
+    first: 'Cleveland Cavaliers',
+    second: 'Miami Heat',
+    third: 'Cleveland Cavaliers',
+    fourth: 'LA Lakers',
+  },
+};
+
+const mvpNew = Object.assign({}, mvp, { name: 'Stephen Curry' });
+console.log("mvp.name -- should still be 'Lebron James':", mvp.name);
+mvpNew.teams.second = 'Chicago Bulls';
+console.log(
+  "mvp.teams.second -- oh no! It was mutated to 'Chicago Bulls':",
+  mvp.teams.second,
+);
+
+const mvpNewSpread = { ...mvp };
+mvpNewSpread.teams.third = 'LA Clippers';
+console.log(
+  "mvp.teams.third -- this also mutated the value to 'LA Clippers':",
+  mvp.teams.third,
+);
+
+// a hack
+const mvpNewHack = JSON.parse(JSON.stringify(mvp));
+mvpNewHack.teams.fourth = 'Houston Rockets';
+console.log(
+  "mvp.teams.fourth -- should still be 'LA Lakers':",
+  mvp.teams.fourth,
+);
