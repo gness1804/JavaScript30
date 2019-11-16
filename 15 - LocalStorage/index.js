@@ -1,8 +1,23 @@
 const addItemsForm = document.querySelector('.add-items');
-// const itemsList = document.querySelector('.plates');
+const itemsList = document.querySelector('.plates');
 const itemInputField = document.querySelector('.item-input-field');
 
 const items = [];
+
+const populateItems = (_items = [], destinationElem) => {
+  destinationElem.innerHTML = _items
+    .map(({ text }) => {
+      if (!_items.length || !text) {
+        return '<li>Loading Tapas...</li>';
+      }
+      return `
+    <li>
+      ${text}
+    </li>
+  `;
+    })
+    .join('');
+};
 
 function addItem(e) {
   e.preventDefault();
@@ -15,6 +30,7 @@ function addItem(e) {
     done: false,
   };
   items.push(item);
+  populateItems(items, itemsList);
   this.reset();
 }
 
