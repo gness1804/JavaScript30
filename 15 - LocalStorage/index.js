@@ -1,18 +1,23 @@
 const addItemsForm = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const itemInputField = document.querySelector('.item-input-field');
 
 const items = [];
 
 const populateItems = (_items = [], destinationElem) => {
   destinationElem.innerHTML = _items
-    .map(({ text }) => {
+    .map(({ text, done }, i) => {
       if (!_items.length || !text) {
         return '<li>Loading Tapas...</li>';
       }
       return `
     <li>
-      ${text}
+      <input
+        type="checkbox"
+        data-index=${i}
+        ${done ? 'checked' : ''}
+        id=item-${i}
+      />
+      <label for=item-${i}>${text}</label>
     </li>
   `;
     })
@@ -21,7 +26,7 @@ const populateItems = (_items = [], destinationElem) => {
 
 function addItem(e) {
   e.preventDefault();
-  const itemVal = itemInputField.value;
+  const itemVal = this.querySelector('.item-input-field').value;
   if (!itemVal) {
     return;
   }
