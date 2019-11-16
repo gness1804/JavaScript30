@@ -6,13 +6,19 @@ const items = [];
 
 const populateItems = (_items = [], destinationElem) => {
   destinationElem.innerHTML = _items
-    .map(({ text }) => {
+    .map(({ text, done }, i) => {
       if (!_items.length || !text) {
         return '<li>Loading Tapas...</li>';
       }
       return `
     <li>
-      ${text}
+      <input
+        type="checkbox"
+        data-index=${i}
+        ${done ? 'checked' : ''}
+        id=item-${i}
+      />
+      <label for=item-${i}>${text}</label>
     </li>
   `;
     })
