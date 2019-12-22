@@ -1,7 +1,13 @@
 const addItemsForm = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 
-const items = [];
+const retrieveItems = () => {
+  const lsItems = JSON.parse(localStorage.getItem('items'));
+  if (lsItems) {
+    return lsItems;
+  }
+  return [];
+};
 
 const populateItems = (_items = [], destinationElem) => {
   destinationElem.innerHTML = _items
@@ -24,6 +30,11 @@ const populateItems = (_items = [], destinationElem) => {
     .join('');
 };
 
+const items = retrieveItems();
+if (items.length > 0) {
+  populateItems(items, itemsList);
+}
+
 function addItem(e) {
   e.preventDefault();
   const itemVal = this.querySelector('.item-input-field').value;
@@ -36,6 +47,7 @@ function addItem(e) {
   };
   items.push(item);
   populateItems(items, itemsList);
+  localStorage.setItem('items', JSON.stringify(items));
   this.reset();
 }
 
