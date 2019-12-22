@@ -51,4 +51,14 @@ function addItem(e) {
   this.reset();
 }
 
+const handleCheckboxClick = e => {
+  const elem = e.target;
+  if (!elem.matches('input')) return;
+  const { index } = elem.dataset;
+  items[index].done = !items[index].done;
+  localStorage.setItem('items', JSON.stringify(items));
+  populateItems(items, itemsList);
+};
+
 addItemsForm.addEventListener('submit', addItem);
+itemsList.addEventListener('click', handleCheckboxClick);
