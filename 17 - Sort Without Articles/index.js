@@ -31,4 +31,4 @@ const sortedBands = bands.sort((a, b) => {
   return 0;
 });
 
-listElem.innerHTML = sortedBands.map(band => `<li>${band}</li>`);
+listElem.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
