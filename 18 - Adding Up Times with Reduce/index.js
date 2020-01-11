@@ -1,7 +1,5 @@
 const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
 
-const times = timeNodes.map(node => node.dataset.time);
-
 const convertRawSecToTimeDisplay = secs => {
   let hours = 0;
   let minutes = 0;
@@ -32,17 +30,22 @@ const convertRawSecToTimeDisplay = secs => {
 };
 
 const result = convertRawSecToTimeDisplay(
-  times.reduce((acc, curr) => {
-    const mins = parseInt(curr.match(/^[0-9]{1,2}:/)[0].replace(/:/, ''), 10);
-    const minsToSeconds = mins * 60;
-    const seconds = parseInt(
-      curr.match(/:[0-9]{1,2}$/)[0].replace(/:/, ''),
-      10,
-    );
-    const totalSeconds = minsToSeconds + seconds;
+  timeNodes
+    .reduce((acc, curr) => {
+      acc.push(curr.dataset.time);
+      return acc;
+    }, [])
+    .reduce((acc, curr) => {
+      const mins = parseInt(curr.match(/^[0-9]{1,2}:/)[0].replace(/:/, ''), 10);
+      const minsToSeconds = mins * 60;
+      const seconds = parseInt(
+        curr.match(/:[0-9]{1,2}$/)[0].replace(/:/, ''),
+        10,
+      );
+      const totalSeconds = minsToSeconds + seconds;
 
-    return acc + totalSeconds;
-  }, 0),
+      return acc + totalSeconds;
+    }, 0),
 );
 
 // eslint-disable-next-line no-console
