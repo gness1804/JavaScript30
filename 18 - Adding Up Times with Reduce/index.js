@@ -36,13 +36,8 @@ const result = convertRawSecToTimeDisplay(
       return acc;
     }, [])
     .reduce((acc, curr) => {
-      const mins = parseInt(curr.match(/^[0-9]{1,2}:/)[0].replace(/:/, ''), 10);
-      const minsToSeconds = mins * 60;
-      const seconds = parseInt(
-        curr.match(/:[0-9]{1,2}$/)[0].replace(/:/, ''),
-        10,
-      );
-      const totalSeconds = minsToSeconds + seconds;
+      const [mins, seconds] = curr.split(':').map(parseFloat);
+      const totalSeconds = mins * 60 + seconds;
 
       return acc + totalSeconds;
     }, 0),
