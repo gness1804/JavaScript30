@@ -1,8 +1,6 @@
-const times = [];
+const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
 
-const videos = document.querySelectorAll('.videos li');
-
-videos.forEach(time => times.push(time.dataset.time));
+const times = timeNodes.map(node => node.dataset.time);
 
 const convertRawSecToTimeDisplay = secs => {
   let hours = 0;
