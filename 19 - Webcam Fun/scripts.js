@@ -1,8 +1,25 @@
 const video = document.querySelector('.player');
 const canvas = document.querySelector('.photo');
 const ctx = canvas.getContext('2d');
-const strip = document.querySelector('.strip');
+// const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
+
+const paintToCanvas = () => {
+  const { videoWidth: width } = video;
+  const { videoHeight: height } = video;
+  canvas.width = width;
+  canvas.height = height;
+
+  return setInterval(() => {
+    ctx.drawImage(video, 0, 0, width, height);
+  }, 16);
+};
+
+// eslint-disable-next-line no-unused-vars
+const takePhoto = () => {
+  snap.currentTime = 0;
+  snap.play();
+};
 
 const getVideo = () => {
   navigator.mediaDevices
@@ -13,7 +30,13 @@ const getVideo = () => {
     .then(stream => {
       video.srcObject = stream;
       video.play();
+    })
+    .catch(err => {
+      // eslint-disable-next-line no-console
+      console.error(`Video stream failed: ${err}`);
     });
 };
 
 getVideo();
+
+video.addEventListener('canplay', paintToCanvas);
