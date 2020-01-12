@@ -1,7 +1,7 @@
 const video = document.querySelector('.player');
 const canvas = document.querySelector('.photo');
 const ctx = canvas.getContext('2d');
-// const strip = document.querySelector('.strip');
+const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
 
 const paintToCanvas = () => {
@@ -15,10 +15,20 @@ const paintToCanvas = () => {
   }, 16);
 };
 
+// disabled because html file is calling this fn
 // eslint-disable-next-line no-unused-vars
 const takePhoto = () => {
+  // plays a sound
   snap.currentTime = 0;
   snap.play();
+
+  // creates a link with the photo to download
+  const data = canvas.toDataURL('image/jpeg');
+  const link = document.createElement('a');
+  link.href = data;
+  link.setAttribute('download', 'handsome');
+  link.innerHTML = `<img src="${data}" alt="Handsome guy." />`;
+  strip.insertBefore(link, strip.firstChild);
 };
 
 const getVideo = () => {
